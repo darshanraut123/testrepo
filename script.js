@@ -132,42 +132,40 @@ async function viewAllRepos() {
     const userName = document.querySelector('.mainInfo span').innerText;
     console.log(userName);
     const appendContainer = document.querySelector(".userList");
-    let repoData = await fetch(`https://api.github.com/users/mojombo/repos`);
+    let repoData = await fetch(`https://api.github.com/users/${userName}/repos`);
     repoData = await repoData.json();
-    console.log(JSON.stringify(repoData))
+    appendContainer.setAttribute("class", "container-fluid");
+    appendContainer.innerHTML = "";
+    appendContainer.innerHTML = "<div class='row repoContainer'></div>";
 
-    // appendContainer.setAttribute("class", "container-fluid");
-    // appendContainer.innerHTML = "";
-    // appendContainer.innerHTML = "<div class='row repoContainer'></div>";
+    repoData.forEach(repo => {
 
-    // repoData.forEach(repo => {
-
-    //     appendContainer.querySelector(".repoContainer").innerHTML += `
-    //             <a href="https://github.com/${repo.owner.login}/${repo.name}" class="col-sm-3 head">
-    //                 <div class="content">
-    //                     <div class="title">${repo.name}</div>
-    //                     <strong>Click the tab to access the repository</strong>
-    //                     <ul class="lis">
-    //                         <li>Repo Name : "${repo.owner.login}/${repo.name}"</li>
-    //                         <li>IsPrivate : ${repo.private} </li>
-    //                         <li>Description : ${repo.description}</li>
-    //                         <li>Language : ${repo.language}</li>
-    //                         <li>STARS : ${repo.stargazers_count}</li>
-    //                         <li>Watchers : ${repo.watchers_count}</li>
-    //                         <li>FORKS : ${repo.forks_count}</li>
-    //                         <li>Visibility : ${repo.visibility}</li>
-    //                         <li>Issues Open :${repo.open_issues}</li>
-    //                         <li>Branch : ${repo.default_branch}</li>
-    //                         <li>Last Update : ${repo.updated_at}</li>
-    //                         <li>Created At : ${repo.created_at}</li>
-    //                     </ul>
-    //                 </div>
-    //             </a>
+        appendContainer.querySelector(".repoContainer").innerHTML += `
+                <a href="https://github.com/${repo.owner.login}/${repo.name}" class="col-sm-3 head">
+                    <div class="content">
+                        <div class="title">${repo.name}</div>
+                        <strong>Click the tab to access the repository</strong>
+                        <ul class="lis">
+                            <li>Repo Name : "${repo.owner.login}/${repo.name}"</li>
+                            <li>IsPrivate : ${repo.private} </li>
+                            <li>Description : ${repo.description}</li>
+                            <li>Language : ${repo.language}</li>
+                            <li>STARS : ${repo.stargazers_count}</li>
+                            <li>Watchers : ${repo.watchers_count}</li>
+                            <li>FORKS : ${repo.forks_count}</li>
+                            <li>Visibility : ${repo.visibility}</li>
+                            <li>Issues Open :${repo.open_issues}</li>
+                            <li>Branch : ${repo.default_branch}</li>
+                            <li>Last Update : ${repo.updated_at}</li>
+                            <li>Created At : ${repo.created_at}</li>
+                        </ul>
+                    </div>
+                </a>
         
         
-    //     `;
+        `;
 
-    // })
+    })
 
 }
 
