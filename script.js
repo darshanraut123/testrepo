@@ -132,7 +132,7 @@ async function viewAllRepos() {
     const userName = document.querySelector('.mainInfo span').innerText.trim();
     console.log(userName);
     const appendContainer = document.querySelector(".userList");
-    let repoData = await fetch(`https://elegant-einstein-b2c46b.netlify.app/.netlify/api.github.com/users/${userName}/repos`, { method: "get" });
+    let repoData = await fetch(`https://agitated-engelbart-4a80cb.netlify.app/.netlify/api.github.com/users/${userName}/repos`, { method: "get" });
     repoData = await repoData.json();
     appendContainer.setAttribute("class", "container-fluid");
     appendContainer.innerHTML = "";
