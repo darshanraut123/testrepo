@@ -13,8 +13,8 @@ let getUsers = async function () {
 function renderUsers() {
 
     getUsers().then(users => {
-
-
+        const appendContainer = document.querySelector(".userList");
+        appendContainer.setAttribute("class", "container");
         contents.innerHTML = "";
         contents.innerHTML = "<div class='info'>Users List : </div>";
 
@@ -134,7 +134,7 @@ async function viewAllRepos() {
     const appendContainer = document.querySelector(".userList");
     let repoData = await fetch(`https://api.github.com/users/${userName}/repos`);
     repoData = await repoData.json();
-    appendContainer.setAttribute("class", "container-fluid");
+    appendContainer.setAttribute("class", "container-fluid userList");
     appendContainer.innerHTML = "";
     appendContainer.innerHTML = "<div class='row repoContainer'></div>";
 
